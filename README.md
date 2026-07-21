@@ -1,1 +1,80 @@
 # learn-github-actions
+
+Let's start with Running Terraform jobs using Github workflows tomorrow.
+
+
+Github actions ---> Workflow ---> Jobs ---> Jobs will have steps ( tasks )
+                                    Jobs by default run parallely
+                                    Steps by default run sequentially 
+
+What is CI ?
+    Continuous Integration.
+
+What's the purpose of CI ?  
+    Continuous Integrations enables the automation of manual effort involved during the software development process.
+    The process of baking the softare varies from project to project.
+
+    But, whatever the effort that's involed can be automated, so that everything will run with a single click of a button.
+
+What are some of the manual process during the development of software artifacts:
+
+The whole process can be automated with CI:
+    Code Scan To Security Vulnerabilites ----> Unit Testing ---> Integration  ----> compiling the code ----> generating the artifact ----> Tag the artifact ----> Uploading the artifact to Artifactory ( ECR / GCR / Nexus / JFrog )
+
+What are the popular CI Systems ?
+    Github actions
+    Gitlab CI/CD
+    Jenkins
+
+        Jenkins ----> jobs are Pipelines  ( Pipeline will have stages, stages will steps, steps will have tasks )
+        GitHub Actions ---> Jons are referred as workflows ( Workflow will have tasks, tasks will have jobs )
+        Gitlab CI/CD ---> Jobs are referred as Pipelines
+
+    What is the pre-requisite to use GitHub Actions ?
+        You should have a GitHub accound with ORG Created.
+
+        GitHub Actions is 100% free for public repositories when using standard GitHub-hosted runners.
+
+GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform that allows you to automate your build, test, and deployment pipeline. You can create workflows that run tests whenever you push a change to your repository, or that deploy merged pull requests to production.
+
+Github Runner is actual server / virtual machine where Github Server executes the job on. These runners can be Github Offered Runners or Self-Hosted.
+
+GitHub Actions Terminology:
+     GitHub Actions ---> Workflows ( Workflow will have Jobs, each job can have one or more tasks that can be executed parallelly or sequentially )
+
+
+        Jobs have tasks & they can execute sequentially
+             task1 --> task2 --> task3 --> task4 --> task5 ( Sequence )
+        
+        or parallely
+
+                Job ---> 
+                        task 1
+                        task 2 
+                        task 3
+                        task 4
+                        task 5
+
+    Workflow ---> Jobs ( job will have steps ( tasks ) can be executed sequentially ) & jobs can also run parallely or sequentially.
+
+        You can configure a GitHub Actions workflow to be triggered when an event occurs in your repository, such as a pull request being opened or an issue being created. Your workflow contains one or more jobs which can run in sequential order or in parallel. Each job will run inside its own virtual machine runner, or inside a container, and has one or more steps that either run a script that you define or run an action, which is a reusable extension that can simplify your workflow.
+
+    Jobs: 
+        A job is a set of steps in a workflow that is executed on the same runner. Each step is either a shell script that will be executed, or an action that will be run. Steps are executed in order and are dependent on each other. Since each step is executed on the same runner, you can share data from one step to another. For example, you can have a step that builds your application followed by a step that tests the application that was built. ( Steps can also be made parallel )
+
+    You can configure a job's dependencies with other jobs; by default, jobs have no dependencies and run in parallel. When a job takes a dependency on another job, it waits for the dependent job to complete before running.
+
+Actions
+    An action is a pre-defined, reusable set of jobs or code that performs specific tasks within a workflow, reducing the amount of repetitive code you write in your workflow files. Actions can perform tasks such as:
+
+        Pulling your Git repository from GitHub
+        Setting up the correct toolchain for your build environment
+        Setting up authentication to your cloud provider
+
+    A runner is a server that runs your workflows when they're triggered. Each runner can run a single job at a time. GitHub provides Ubuntu Linux, Microsoft Windows, and macOS runners to run your workflows. Each workflow run executes in a fresh, newly-provisioned virtual machine.
+
+What's next ? 
+
+    1) Using Terraform provisiona github runner ec2 machine
+    2) Use ansible to place the manual instructions to automate the runner registration with github.
+    
