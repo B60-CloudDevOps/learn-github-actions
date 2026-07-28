@@ -45,7 +45,7 @@ jobs:
 
   preprod-deploy:
     runs-on: self-hosted
-    needs: preprod-deploy
+    needs: qa-deploy
     steps:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
@@ -53,7 +53,7 @@ jobs:
 
   prod-deploy:
     runs-on: self-hosted
-    needs: prod-deploy
+    needs: preprod-deploy
     steps:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
