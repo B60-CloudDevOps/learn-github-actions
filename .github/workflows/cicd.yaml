@@ -26,10 +26,18 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
         run: echo "Performing complile and then build"
+
+  versioning:
+    runs-on: self-hosted
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Versioning The Artifacts
+        run: echo "Tagging the generated artifact"
       
   dev-deploy:
     runs-on: self-hosted
-    needs: build
+    needs: versioning
     steps:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
