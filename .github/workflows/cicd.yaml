@@ -13,6 +13,7 @@ jobs:
 
   test:
     runs-on: self-hosted
+    needs: scan
     steps:
       - uses: actions/checkout@v4
       - name: Running Test Cases
@@ -20,6 +21,7 @@ jobs:
 
   build:
     runs-on: self-hosted
+    needs: test
     steps:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
@@ -27,6 +29,7 @@ jobs:
       
   dev-deploy:
     runs-on: self-hosted
+    needs: build
     steps:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
@@ -34,6 +37,7 @@ jobs:
 
   qa-deploy:
     runs-on: self-hosted
+    needs: dev-deploy
     steps:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
@@ -41,6 +45,7 @@ jobs:
 
   preprod-deploy:
     runs-on: self-hosted
+    needs: preprod-deploy
     steps:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
@@ -48,6 +53,7 @@ jobs:
 
   prod-deploy:
     runs-on: self-hosted
+    needs: prod-deploy
     steps:
       - uses: actions/checkout@v4
       - name: Generating Artifacts
