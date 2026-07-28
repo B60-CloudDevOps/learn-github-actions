@@ -29,7 +29,7 @@ jobs:
 
   versioning:
     runs-on: self-hosted
-    needs: test
+    needs: build
     steps:
       - uses: actions/checkout@v4
       - name: Versioning The Artifacts
